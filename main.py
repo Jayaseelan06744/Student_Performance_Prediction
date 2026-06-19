@@ -13,7 +13,6 @@ from sklearn.metrics import (
     mean_squared_error,
     r2_score
 )
-
 df = pd.read_csv("dataset.csv")
 
 print("\nFIRST 5 ROWS")
@@ -157,46 +156,35 @@ print("MSE :", round(mse, 2))
 print("RMSE:", round(rmse, 2))
 print("R2  :", round(r2, 2))
 
-
-
 dt_model = DecisionTreeRegressor(
     random_state=42
 )
-
 dt_model.fit(
     X_train,
     y_train
 )
-
 dt_predictions = dt_model.predict(
     X_test
 )
-
 dt_mae = mean_absolute_error(
     y_test,
     dt_predictions
 )
-
 dt_rmse = np.sqrt(
     mean_squared_error(
         y_test,
         dt_predictions
     )
 )
-
 dt_r2 = r2_score(
     y_test,
     dt_predictions
 )
 
 print("\nDECISION TREE RESULTS")
-
 print("MAE :", round(dt_mae, 2))
 print("RMSE:", round(dt_rmse, 2))
 print("R2  :", round(dt_r2, 2))
-# ==========================================
-# RANDOM FOREST REGRESSOR
-# ==========================================
 
 rf_model = RandomForestRegressor(
     n_estimators=20,
@@ -207,63 +195,51 @@ rf_model.fit(
     X_train,
     y_train
 )
-
 rf_predictions = rf_model.predict(
     X_test
 )
-
 rf_mae = mean_absolute_error(
     y_test,
     rf_predictions
 )
-
 rf_rmse = np.sqrt(
     mean_squared_error(
         y_test,
         rf_predictions
     )
 )
-
 rf_r2 = r2_score(
     y_test,
     rf_predictions
 )
-
 print("\nRANDOM FOREST RESULTS")
-
 print("MAE :", round(rf_mae, 2))
 print("RMSE:", round(rf_rmse, 2))
 print("R2  :", round(rf_r2, 2))
 comparison_table = pd.DataFrame({
-
     "Model": [
         "Linear Regression",
         "Decision Tree",
         "Random Forest"
     ],
-
     "MAE": [
         round(mae, 2),
         round(dt_mae, 2),
         round(rf_mae, 2)
     ],
-
     "RMSE": [
         round(rmse, 2),
         round(dt_rmse, 2),
         round(rf_rmse, 2)
     ],
-
     "R2 Score": [
         round(r2, 2),
         round(dt_r2, 2),
         round(rf_r2, 2)
     ]
 })
-
 print("\nMODEL COMPARISON")
 print(comparison_table)
-
 importance = pd.DataFrame({
     "Feature": X.columns,
     "Coefficient": model.coef_
@@ -273,7 +249,6 @@ importance = importance.sort_values(
     by="Coefficient",
     ascending=False
 )
-
 print("\nTOP 10 IMPORTANT FEATURES")
 print(importance.head(10))
 import pickle
@@ -282,7 +257,6 @@ pickle.dump(
     open("model.pkl", "wb")
 )
 print("\nMODEL SAVED AS model.pkl")
-
 sample_student = pd.DataFrame(
     [[
         25,   # Hours_Studied
